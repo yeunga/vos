@@ -217,8 +217,8 @@ public class VOSpaceClient
                         throw new IllegalArgumentException("DuplicateNode: " + node.getUri().getURI().toASCIIString());
 
             URL vospaceURL = lookupServiceURL(Standards.VOSPACE_NODES_20);
+            URL url = new URL(vospaceURL.toExternalForm() + node.getUri().getPath().replaceAll(" ", "%20"));
 
-            URL url = new URL(vospaceURL.toExternalForm() + node.getUri().getPath());
             log.debug("createNode(), URL=" + url);
 
             NodeOutputStream out = new NodeOutputStream(node);
@@ -284,7 +284,7 @@ public class VOSpaceClient
         try
         {
             URL vospaceURL = lookupServiceURL(Standards.VOSPACE_NODES_20);
-            URL url = new URL(vospaceURL.toExternalForm() + path);
+            URL url = new URL(vospaceURL.toExternalForm() + path.replaceAll(" ", "%20"));
             log.debug("getNode(), URL=" + url);
 
             ByteArrayOutputStream out = new ByteArrayOutputStream();
